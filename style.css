@@ -5,6 +5,8 @@
 }
 body {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     margin: 0px 300px auto;
     align-items: center;
     min-height: 100vh;
@@ -12,6 +14,9 @@ body {
 }
 .clock{
     width: auto;
+    display: flex;
+    justify-content: center;
+    
 }
 span .flip-clock-dot{
     background: #ccc;
@@ -42,4 +47,9 @@ span .flip-clock-label {
 
 .flip-clock-divider.seconds .flip-clock-label {
     right: -100px !important; 
+}
+
+.clock_setting {
+    display: flex;
+    gap: 10px
 }

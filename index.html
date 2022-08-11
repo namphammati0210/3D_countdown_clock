@@ -1,34 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Countdown Timer Using Flipclock.js</title>
-	<link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="flipclock.css">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Countdown Timer Using Flipclock.js</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="flipclock.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="flipclock.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <div class="clock"></div>
+    <div class="clock_setting">
+      <button id="startBtn">Start</button>
+      <button id="stopBtn">Stop</button>
+      <button id="resetBtn">Reset</button>
+      <input type="number" id="countdownTime" ></div>
+    </div>
 
-<script type="text/javascript">
-$(document).ready(function(){
-    var date = new Date(2020, 6, 16);
-    var today = new Date();
+    <script type="text/javascript">
+      $(document).ready(function () {
+        let countdownTime = 0;
 
-    var dif = date.getTime()/1000 - today.getTime()/1000;
-    var timeLeft = Math.abs(dif);
+        var clock = $(".clock").FlipClock({
+          autoStart: false,
+          clockFace: "MinuteCounter",
+          countdown: true,
+        });
 
+        $("#startBtn").click(() => {
+          clock.start();
+        });
 
-    var clock = $('.clock').FlipClock({
-        autoStart: false,
-        clockFace: 'DailyCounter',
-        countdown: true
-    });
+        $("#stopBtn").click(() => {
+          clock.stop();
+        });
 
-    clock.setTime(timeLeft);
-    clock.start();   
-});
-</script>
-</body>
+        $("#resetBtn").click(() => {
+          clock.stop();
+          clock.setTime(countdownTime);
+        });
+      
+        $('#countdownTime').on('change', (e) => {
+          countdownTime = e.target.value;
+          clock.setTime(countdownTime);
+        });
+
+      
+
+      });
+    </script>
+  </body>
 </html>
